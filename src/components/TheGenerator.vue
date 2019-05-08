@@ -7,32 +7,35 @@
         <div class="options">
           <span class="option-label">
             <label class="block" for="genres">Genres</label>
-            <input v-model="genres" type="number" id="genres">
+            <input v-model="options.genres" type="number" id="genres">
           </span>
 
           <span class="option-label">
             <label class="block" for="nouns">Stuffs</label>
-            <input v-model="nouns" type="number" id="nouns">
+            <input v-model="options.nouns" type="number" id="nouns">
           </span>
 
           <span class="option-label">
             <label class="block" for="adjectives">Fanciness</label>
-            <input v-model="adjectives" type="number" id="adjectives">
+            <input v-model="options.adjectives" type="number" id="adjectives">
           </span>
 
           <span class="option-label">
             <label class="block" for="verbs">Actions</label>
-            <input v-model="verbs" type="number" id="verbs">
+            <input v-model="options.verbs" type="number" id="verbs">
           </span>
         </div>
       </div>
 
       <h2>Game idea:</h2>
-      <p>A {{ genres }} game where you {{ verbs }} {{ adjectives }} {{ nouns }}.</p>
+      <p>{{ idea }}</p>
+      <button @click="makeSentence">Generate!</button>
   </div>
 </template>
 
 <script>
+import sentencer from 'sentencer'
+
 export default {
   name: 'TheGenerator',
   props: {
@@ -40,19 +43,24 @@ export default {
   },
   data () {
     return {
-      genres: 1,
-      nouns: 1,
-      adjectives: 1,
-      verbs: 1
+      options: {
+        genres: 1,
+        nouns: 1,
+        adjectives: 1,
+        verbs: 1
+      },
+      idea: ''
+    }
+  },
+  methods: {
+    makeSentence () {
+      this.idea = sentencer.make('An FPS/RPG game where you collect {{ adjective }} {{ nouns }}.')
     }
   }
 }
 </script>
 
 <style scoped>
-.options-container {
-}
-
 .options {
   display: flex;
 }
