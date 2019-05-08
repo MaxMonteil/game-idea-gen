@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import sentencer from 'sentencer'
+import Sentencer from 'sentencer'
 
 export default {
   name: 'TheGenerator',
@@ -51,59 +51,73 @@ export default {
       },
       idea: '',
       gameGenres: [
-        'Platformer',
-        'Shooter',
-        'Fighting',
-        "Beat 'em up",
-        'Stealth',
-        'Survival',
-        'Rhythm',
-        'Survival horror',
-        'Metroidvania',
-        'Text adventure',
-        'Graphic adventure',
-        'Visual novel',
-        'Interactive movie',
-        'Real-time 3D adventures',
-        'Action RPG',
-        'MMORPG',
-        'Roguelike',
-        'Tactical RPG',
-        'Sandbox RPG',
-        'First-person party-based RPG',
-        'Choices',
-        'Fantasy',
-        'Construction and management simulation',
-        'Life simulation',
-        'Vehicle simulation',
-        '4X',
-        'Artillery',
-        'Real-time strategy (RTS)',
-        'Real-time tactics (RTT)',
-        'Multiplayer online battle arena (MOBA)',
-        'Tower defense',
-        'Turn-based strategy (TBS)',
-        'Turn-based tactics (TBT)',
-        'Wargame',
-        'Racing',
-        'Sports',
-        'Sports-based fighting',
-        'MMO',
-        'Casual',
-        'Party',
-        'Programming',
-        'Logic',
-        'Trivia',
-        'Board',
-        'Card',
-        'Idle game'
+        'A Platformer',
+        'A Shooter',
+        'A Fighting',
+        "A Beat 'em up",
+        'A Stealth',
+        'A Survival',
+        'A Rhythm',
+        'A Survival horror',
+        'A Metroidvania',
+        'A Text adventure',
+        'A Graphic adventure',
+        'A Visual novel',
+        'An Interactive movie',
+        'A Real-time 3D adventure',
+        'An Action RPG',
+        'An MMORPG',
+        'A Roguelike',
+        'A Tactical RPG',
+        'A Sandbox RPG',
+        'A First-person party-based RPG',
+        'A Choices',
+        'A Fantasy',
+        'A Construction and management simulation',
+        'A Life simulation',
+        'A Vehicle simulation',
+        'A 4X',
+        'An Artillery',
+        'A Real-time strategy (RTS)',
+        'A Real-time tactics (RTT)',
+        'A Multiplayer online battle arena (MOBA)',
+        'A Tower defense',
+        'A Turn-based strategy (TBS)',
+        'A Turn-based tactics (TBT)',
+        'A Wargame',
+        'A Racing',
+        'A Sports',
+        'A Sports-based fighting',
+        'An MMO',
+        'A Casual',
+        'A Party',
+        'A Programming',
+        'A Logic',
+        'A Trivia',
+        'A Board',
+        'A Card',
+        'An Idle game'
       ]
     }
   },
   methods: {
     makeSentence () {
-      this.idea = sentencer.make('An FPS/RPG game where you collect {{ adjective }} {{ nouns }}.')
+      this.idea = Sentencer.make('{{ a_genre }}/{{ genre }} game where you collect {{ adjective }} {{ nouns }}.')
     }
+  },
+  created () {
+    let getGenre = () => {
+      return this.gameGenres[Math.floor(Math.random() * this.gameGenres.length)]
+    }
+
+    Sentencer.configure({
+      actions: {
+        a_genre: getGenre,
+        genre () {
+          return getGenre().split(' ').splice(1, 2).join(' ')
+        }
+      }
+    })
   }
 }
 </script>
