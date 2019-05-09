@@ -138,7 +138,7 @@ export default {
           for (let i = 0; i < num; i++) {
             result.push(fancy ? `${this.an_adjective()} ${this.noun()}` : this.a_noun())
           }
-          return result.join(' and ')
+          return result.length === 1 ? result[0] : result.splice(0, result.length - 1).join(', ') + ' and ' + result[result.length - 1]
         }
       }
     })
