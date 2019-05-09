@@ -7,22 +7,27 @@
         <div class="options">
           <span class="option-label">
             <label class="block" for="genres">Genres</label>
-            <input v-model="options.genres" type="number" id="genres">
+            <input v-model="genres" type="number" id="genres" min="1" :max="gameGenres.length">
           </span>
 
           <span class="option-label">
-            <label class="block" for="nouns">Stuffs</label>
-            <input v-model="options.nouns" type="number" id="nouns">
+            <label class="block" for="fancyTopics">Fancy?</label>
+            <input v-model="fancyTopics" type="checkbox" id="fancyTopics">
           </span>
 
           <span class="option-label">
-            <label class="block" for="adjectives">Fanciness</label>
-            <input v-model="options.adjectives" type="number" id="adjectives">
+            <label class="block" for="topics">Topic</label>
+            <input v-model="topics" type="number" id="topics">
           </span>
 
           <span class="option-label">
-            <label class="block" for="verbs">Actions</label>
-            <input v-model="options.verbs" type="number" id="verbs">
+            <label class="block" for="fancyActions">Fancy?</label>
+            <input v-model="fancyActions" type="checkbox" id="fancyActions">
+          </span>
+
+          <span class="option-label">
+            <label class="block" for="actions">Actions</label>
+            <input v-model="actions" type="number" id="actions">
           </span>
         </div>
       </div>
@@ -43,12 +48,11 @@ export default {
   },
   data () {
     return {
-      options: {
-        genres: 1,
-        nouns: 1,
-        adjectives: 1,
-        verbs: 1
-      },
+      genres: 1,
+      fancyTopics: true,
+      topics: 1,
+      fancyActions: true,
+      actions: 1,
       idea: '',
       gameGenres: [
         'A Platformer',
@@ -102,7 +106,10 @@ export default {
   },
   methods: {
     makeSentence () {
-      this.idea = Sentencer.make(`{{ genres(${this.options.genres}) }} game where you collect {{ adjective }} {{ nouns }}.`)
+      // Validation
+      this.genres = (this.genres < 1) ? 1 : (this.genres > this.gameGenres.length) ? this.gameGenres.length : this.genres
+
+      this.idea = Sentencer.make(`{{ genres(${this.genres}) }} game about {{ topics(${this.topics}, ${this.fancyTopics}) }} where you must {{ actions(${this.actions}, ${this.fancyActions}) }}.`)
     }
   },
   created () {
@@ -125,6 +132,13 @@ export default {
             }
             return result.join(' / ')
           }
+        },
+        topics (num, fancy) {
+          let result = []
+          for (let i = 0; i < num; i++) {
+            result.push(fancy ? `${this.an_adjective()} ${this.noun()}` : this.a_noun())
+          }
+          return result.join(' and ')
         }
       }
     })
