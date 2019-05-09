@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import Verbs from '@/assets/verbs.js'
 import Sentencer from 'sentencer'
 
 export default {
@@ -54,6 +55,7 @@ export default {
       fancyActions: true,
       actions: 1,
       idea: '',
+      verb: Verbs[0],
       gameGenres: [
         'A Platformer',
         'A Shooter',
@@ -119,6 +121,9 @@ export default {
 
     Sentencer.configure({
       actions: {
+        verb () {
+          return Verbs[Math.floor(Math.random() * Verbs.length)]
+        },
         genres (num) {
           if (num === 1) {
             return getGenre()
@@ -139,9 +144,18 @@ export default {
             result.push(fancy ? `${this.an_adjective()} ${this.noun()}` : this.a_noun())
           }
           return result.length === 1 ? result[0] : result.splice(0, result.length - 1).join(', ') + ' and ' + result[result.length - 1]
+        },
+        actions (num, fancy) {
+          let result = []
+          for (let i = 0; i < num; i++) {
+            result.push(fancy ? `${this.verb()} ${this.an_adjective()} ${this.noun()}` : `${this.verb()} ${this.a_noun()}`)
+          }
+          return result.length === 1 ? result[0] : result.splice(0, result.length - 1).join(', ') + ' and ' + result[result.length - 1]
         }
       }
     })
+
+    this.makeSentence() // Load page with a random idea
   }
 }
 </script>
