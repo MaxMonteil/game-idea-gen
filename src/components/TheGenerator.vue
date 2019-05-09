@@ -96,13 +96,13 @@ export default {
         'A Trivia',
         'A Board',
         'A Card',
-        'An Idle game'
+        'An Idle'
       ]
     }
   },
   methods: {
     makeSentence () {
-      this.idea = Sentencer.make('{{ a_genre }}/{{ genre }} game where you collect {{ adjective }} {{ nouns }}.')
+      this.idea = Sentencer.make(`{{ genres(${this.options.genres}) }} game where you collect {{ adjective }} {{ nouns }}.`)
     }
   },
   created () {
@@ -112,9 +112,19 @@ export default {
 
     Sentencer.configure({
       actions: {
-        a_genre: getGenre,
-        genre () {
-          return getGenre().split(' ').splice(1, 2).join(' ')
+        genres (num) {
+          if (num === 1) {
+            return getGenre()
+          } else {
+            let result = [getGenre()]
+            for (let i = 1; i < num; i++) {
+              let genre = getGenre().split(' ').splice(1, 2).join(' ')
+              if (!result.includes(genre)) {
+                result.push(genre)
+              }
+            }
+            return result.join(' / ')
+          }
         }
       }
     })
