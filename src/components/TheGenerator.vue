@@ -115,12 +115,14 @@ export default {
     }
   },
   created () {
+    // Pressing the spacebar will generate a new idea
     window.addEventListener('keydown', e => {
       if (e.keyCode === 32) {
         this.makeSentence()
       }
     })
 
+    // Binding this to the vue instance before passing to sentence configuration
     let getGenre = () => {
       return this.gameGenres[Math.floor(Math.random() * this.gameGenres.length)]
     }
