@@ -16,7 +16,7 @@
           </span>
 
           <span class="option-label">
-            <label class="block" for="topics">Topic</label>
+            <label class="block" for="topics">Topics</label>
             <input v-model="topics" type="number" id="topics">
           </span>
 
@@ -115,6 +115,12 @@ export default {
     }
   },
   created () {
+    window.addEventListener('keydown', e => {
+      if (e.keyCode === 32) {
+        this.makeSentence()
+      }
+    })
+
     let getGenre = () => {
       return this.gameGenres[Math.floor(Math.random() * this.gameGenres.length)]
     }
