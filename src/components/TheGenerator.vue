@@ -17,7 +17,7 @@
 
           <span class="option-label">
             <label class="block" for="topics">Topics</label>
-            <input v-model="topics" type="number" id="topics">
+            <input v-model="topics" type="number" id="topics" min="1" :max="MAX_TOPICS">
           </span>
 
           <span class="option-label">
@@ -27,7 +27,7 @@
 
           <span class="option-label">
             <label class="block" for="actions">Actions</label>
-            <input v-model="actions" type="number" id="actions">
+            <input v-model="actions" type="number" id="actions" min="1" :max="MAX_ACTIONS">
           </span>
         </div>
       </div>
