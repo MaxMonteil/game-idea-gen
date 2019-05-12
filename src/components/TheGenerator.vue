@@ -125,28 +125,32 @@ export default {
     }
   },
   methods: {
-    genGenre () {
-      return Sentencer.make(`{{ genres(${this.genres}) }}`)
+    resetData () {
+      this.idea.genres.words = []
+      this.idea.topics.words = []
+      this.idea.actions.words = []
     },
     generateIdea () {
+      this.resetData()
+
       // Validation
       this.genres = (this.genres < 1) ? 1 : (this.genres > this.gameGenres.length) ? this.gameGenres.length : this.genres
       this.topics = (this.topics < 1) ? 1 : (this.topics > this.MAX_TOPICS) ? this.MAX_TOPICS : this.topics
       this.actions = (this.actions < 1) ? 1 : (this.actions > this.MAX_ACTIONS) ? this.MAX_ACTIONS : this.actions
 
       // Generation
-      this.idea.genres.words.push({ noun: Sentencer.make('{{ a_genre }}'), adj: null, verb: null })
-      for (let i = 0; i < this.genres; i++) {
-        this.idea.genres.words.push({ noun: Sentencer.make('{{ genre }}'), adj: null, verb: null })
+      this.idea.genres.words.push({ noun: Sentencer.make('{{ a_genre }}'), adj: '', verb: '' })
+      for (let i = 0; i < this.genres - 1; i++) {
+        this.idea.genres.words.push({ noun: Sentencer.make('{{ genre }}'), adj: '', verb: '' })
       }
 
       if (this.fancyTopics) {
         for (let i = 0; i < this.topics; i++) {
-          this.idea.topics.words.push({ noun: Sentencer.make('{{ noun }}'), adj: Sentencer.make('{{ an_adjective }}'), verb: null })
+          this.idea.topics.words.push({ noun: Sentencer.make('{{ noun }}'), adj: Sentencer.make('{{ an_adjective }}'), verb: '' })
         }
       } else {
         for (let i = 0; i < this.topics; i++) {
-          this.idea.topics.words.push({ noun: Sentencer.make('{{ noun }}'), adj: null, verb: null })
+          this.idea.topics.words.push({ noun: Sentencer.make('{{ a_noun }}'), adj: '', verb: '' })
         }
       }
 
@@ -156,7 +160,7 @@ export default {
         }
       } else {
         for (let i = 0; i < this.actions; i++) {
-          this.idea.actions.words.push({ noun: Sentencer.make('{{ noun }}'), adj: null, verb: Sentencer.make('{{ verb }}') })
+          this.idea.actions.words.push({ noun: Sentencer.make('{{ a_noun }}'), adj: '', verb: Sentencer.make('{{ verb }}') })
         }
       }
     }
