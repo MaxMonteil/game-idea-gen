@@ -70,15 +70,15 @@ export default {
       MAX_ACTIONS: 10,
       idea: {
         genres: {
-          join: (words) => words.join(' / '),
+          joiner: (words) => words.join(' / '),
           words: []
         },
         topics: {
-          join: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
+          joiner: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
           words: []
         },
         actions: {
-          join: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
+          joiner: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
           words: []
         }
       },
