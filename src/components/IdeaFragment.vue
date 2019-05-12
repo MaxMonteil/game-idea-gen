@@ -1,41 +1,28 @@
 <template>
-  <span @click="lockFrag">
-    {{ displayFrag }}
+  <span>
+    <span v-for="word in fragment.words" :key="word.noun">
+      <idea-word :word="word.verb" />
+      <idea-word :word="word.adj" />
+      <idea-word :word="word.noun" />
+    </span>
   </span>
 </template>
 
 <script>
+import IdeaWord from '@/components/IdeaWord'
+
 export default {
-  name: 'AppIdeaFragment',
+  name: 'IdeaFragment',
   props: {
-    fragment: String
+    fragment: Object
+  },
+  components: {
+    IdeaWord
   },
   data () {
-    return {
-      displayFrag: this.fragment,
-      cachedFrag: '',
-      locked: false
-    }
+    return {}
   },
   methods: {
-    lockFrag () {
-      // Locking word
-      if (!this.locked) {
-        this.cachedFrag = this.fragment
-        this.locked = true
-      } else { // Unlocking word
-        this.locked = false
-      }
-    }
-  },
-  watch: {
-    fragment (newFrag) {
-      if (this.locked) {
-        this.displayFrag = this.cachedFrag
-      } else {
-        this.displayFrag = newFrag
-      }
-    }
   }
 }
 </script>
