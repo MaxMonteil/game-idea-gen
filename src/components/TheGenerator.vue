@@ -143,12 +143,30 @@ export default {
       this.actions = (this.actions < 1) ? 1 : (this.actions > this.MAX_ACTIONS) ? this.MAX_ACTIONS : this.actions
 
       // Generation
-      this.idea.genres.words.push(Sentencer.make('{{ a_genre }}'))
+      this.idea.genres.words.push({ noun: Sentencer.make('{{ a_genre }}'), adj: null, verb: null })
       for (let i = 0; i < this.genres; i++) {
-        this.idea.genres.words.push(Sentencer.make('{{ genre }}'))
+        this.idea.genres.words.push({ noun: Sentencer.make('{{ genre }}'), adj: null, verb: null })
       }
 
-      this.idea = Sentencer.make(`{{ genres(${this.genres}) }} game about {{ topics(${this.topics}, ${this.fancyTopics}) }} where you must {{ actions(${this.actions}, ${this.fancyActions}) }}.`)
+      if (this.fancyTopics) {
+        for (let i = 0; i < this.topics; i++) {
+          this.idea.topics.words.push({ noun: Sentencer.make('{{ noun }}'), adj: Sentencer.make('{{ an_adjective }}'), verb: null })
+        }
+      } else {
+        for (let i = 0; i < this.topics; i++) {
+          this.idea.topics.words.push({ noun: Sentencer.make('{{ noun }}'), adj: null, verb: null })
+        }
+      }
+
+      if (this.fancyActions) {
+        for (let i = 0; i < this.actions; i++) {
+          this.idea.actions.words.push({ noun: Sentencer.make('{{ noun }}'), adj: Sentencer.make('{{ an_adjective }}'), verb: Sentencer.make('{{ verb }}') })
+        }
+      } else {
+        for (let i = 0; i < this.actions; i++) {
+          this.idea.actions.words.push({ noun: Sentencer.make('{{ noun }}'), adj: null, verb: Sentencer.make('{{ verb }}') })
+        }
+      }
     }
   },
   created () {
@@ -174,13 +192,6 @@ export default {
         },
         a_genre () {
           return getGenre()
-        },
-        topics (num, fancy) {
-          let result = []
-          for (let i = 0; i < num; i++) {
-            result.push(fancy ? `${this.an_adjective()} ${this.noun()}` : this.a_noun())
-          }
-          return result.length === 1 ? result[0] : result.splice(0, result.length - 1).join(', ') + ' and ' + result[result.length - 1]
         },
         actions (num, fancy) {
           let result = []
