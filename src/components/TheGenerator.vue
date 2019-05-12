@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-      <h1>{{ msg }}</h1>
+  <div>
+      <h1>Game Idea Generator</h1>
 
       <h2>Options:</h2>
       <div class="options-container">
@@ -33,13 +33,8 @@
       </div>
 
       <h2>Game idea:</h2>
-      <p>{{ idea }}</p>
       <p>
-        <idea-fragment :fragment="genGenre()" />
-        game about
-        <idea-fragment>topics</idea-fragment>
-        where you must
-        <idea-fragment>actions</idea-fragment>.
+        <idea-fragment :fragment="idea.genres" /> game about <idea-fragment :fragment="idea.topics" /> where you must <idea-fragment :fragment="idea.actions" />.
       </p>
       <button @click="generateIdea">Generate!</button>
   </div>
@@ -53,9 +48,6 @@ import IdeaFragment from '@/components/IdeaFragment'
 
 export default {
   name: 'TheGenerator',
-  props: {
-    msg: String
-  },
   components: {
     IdeaFragment
   },

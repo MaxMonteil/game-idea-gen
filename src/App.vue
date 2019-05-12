@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TheGenerator msg="Game Idea Generator"/>
+    <TheGenerator />
   </div>
 </template>
 
