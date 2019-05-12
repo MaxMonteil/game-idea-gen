@@ -64,9 +64,24 @@ export default {
       genres: 1,
       fancyTopics: true,
       topics: 1,
+      MAX_TOPICS: 10,
       fancyActions: true,
       actions: 1,
-      idea: '',
+      MAX_ACTIONS: 10,
+      idea: {
+        genres: {
+          join: (words) => words.join(' / '),
+          words: []
+        },
+        topics: {
+          join: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
+          words: []
+        },
+        actions: {
+          join: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
+          words: []
+        }
+      },
       gameGenres: [
         'A Platformer',
         'A Shooter',
