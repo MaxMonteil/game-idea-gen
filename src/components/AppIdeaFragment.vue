@@ -1,6 +1,6 @@
 <template>
-  <span @click="lockWord">
-    {{ displayWord }}
+  <span @click="lockFrag">
+    {{ displayFrag }}
   </span>
 </template>
 
@@ -8,30 +8,32 @@
 export default {
   name: 'AppIdeaFragment',
   props: {
-    word: String
+    fragment: String
   },
   data () {
     return {
-      cachedWord: '',
+      displayFrag: this.fragment,
+      cachedFrag: '',
       locked: false
     }
   },
-  computed: {
-    displayWord () {
-      if (this.locked) {
-        return this.cachedWord
-      }
-      return this.word
-    }
-  },
   methods: {
-    lockWord () {
+    lockFrag () {
       // Locking word
       if (!this.locked) {
-        this.cachedWord = this.word
+        this.cachedFrag = this.fragment
         this.locked = true
       } else { // Unlocking word
         this.locked = false
+      }
+    }
+  },
+  watch: {
+    fragment (newFrag) {
+      if (this.locked) {
+        this.displayFrag = this.cachedFrag
+      } else {
+        this.displayFrag = newFrag
       }
     }
   }
@@ -39,5 +41,4 @@ export default {
 </script>
 
 <style>
-
 </style>
