@@ -34,6 +34,13 @@
 
       <h2>Game idea:</h2>
       <p>{{ idea }}</p>
+      <p>
+        <app-idea-fragment :word="genGenre()" />
+        game about
+        <app-idea-fragment>topics</app-idea-fragment>
+        where you must
+        <app-idea-fragment>actions</app-idea-fragment>.
+      </p>
       <button @click="makeSentence">Generate!</button>
   </div>
 </template>
@@ -42,10 +49,15 @@
 import Verbs from '@/assets/verbs.js'
 import Sentencer from 'sentencer'
 
+import AppIdeaFragment from '@/components/AppIdeaFragment'
+
 export default {
   name: 'TheGenerator',
   props: {
     msg: String
+  },
+  components: {
+    AppIdeaFragment
   },
   data () {
     return {
@@ -55,7 +67,6 @@ export default {
       fancyActions: true,
       actions: 1,
       idea: '',
-      verb: Verbs[0],
       gameGenres: [
         'A Platformer',
         'A Shooter',
@@ -107,6 +118,9 @@ export default {
     }
   },
   methods: {
+    genGenre () {
+      return Sentencer.make(`{{ genres(${this.genres}) }}`)
+    },
     makeSentence () {
       // Validation
       this.genres = (this.genres < 1) ? 1 : (this.genres > this.gameGenres.length) ? this.gameGenres.length : this.genres
