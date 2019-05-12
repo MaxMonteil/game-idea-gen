@@ -35,11 +35,11 @@
       <h2>Game idea:</h2>
       <p>{{ idea }}</p>
       <p>
-        <app-idea-fragment :word="genGenre()" />
+        <idea-fragment :fragment="genGenre()" />
         game about
-        <app-idea-fragment>topics</app-idea-fragment>
+        <idea-fragment>topics</idea-fragment>
         where you must
-        <app-idea-fragment>actions</app-idea-fragment>.
+        <idea-fragment>actions</idea-fragment>.
       </p>
       <button @click="makeSentence">Generate!</button>
   </div>
@@ -49,7 +49,7 @@
 import Verbs from '@/assets/verbs.js'
 import Sentencer from 'sentencer'
 
-import AppIdeaFragment from '@/components/AppIdeaFragment'
+import IdeaFragment from '@/components/IdeaFragment'
 
 export default {
   name: 'TheGenerator',
@@ -57,7 +57,7 @@ export default {
     msg: String
   },
   components: {
-    AppIdeaFragment
+    IdeaFragment
   },
   data () {
     return {
