@@ -136,9 +136,17 @@ export default {
     genGenre () {
       return Sentencer.make(`{{ genres(${this.genres}) }}`)
     },
-    makeSentence () {
+    generateIdea () {
       // Validation
       this.genres = (this.genres < 1) ? 1 : (this.genres > this.gameGenres.length) ? this.gameGenres.length : this.genres
+      this.topics = (this.topics < 1) ? 1 : (this.topics > this.MAX_TOPICS) ? this.MAX_TOPICS : this.topics
+      this.actions = (this.actions < 1) ? 1 : (this.actions > this.MAX_ACTIONS) ? this.MAX_ACTIONS : this.actions
+
+      // Generation
+      this.idea.genres.words.push(Sentencer.make('{{ a_genre }}'))
+      for (let i = 0; i < this.genres; i++) {
+        this.idea.genres.words.push(Sentencer.make('{{ genre }}'))
+      }
 
       this.idea = Sentencer.make(`{{ genres(${this.genres}) }} game about {{ topics(${this.topics}, ${this.fancyTopics}) }} where you must {{ actions(${this.actions}, ${this.fancyActions}) }}.`)
     }
@@ -161,19 +169,11 @@ export default {
         verb () {
           return Verbs[Math.floor(Math.random() * Verbs.length)]
         },
-        genres (num) {
-          if (num === 1) {
-            return getGenre()
-          } else {
-            let result = [getGenre()]
-            for (let i = 1; i < num; i++) {
-              let genre = getGenre().split(' ').splice(1, 2).join(' ')
-              if (!result.includes(genre)) {
-                result.push(genre)
-              }
-            }
-            return result.join(' / ')
-          }
+        genre () {
+          return getGenre().split(' ').splice(1, 2).join(' ')
+        },
+        a_genre () {
+          return getGenre()
         },
         topics (num, fancy) {
           let result = []
