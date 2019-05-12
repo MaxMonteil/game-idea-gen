@@ -41,7 +41,7 @@
         where you must
         <idea-fragment>actions</idea-fragment>.
       </p>
-      <button @click="makeSentence">Generate!</button>
+      <button @click="generateIdea">Generate!</button>
   </div>
 </template>
 
@@ -155,7 +155,7 @@ export default {
     // Pressing the spacebar will generate a new idea
     window.addEventListener('keydown', e => {
       if (e.keyCode === 32) {
-        this.makeSentence()
+        this.generateIdea()
       }
     })
 
@@ -192,7 +192,7 @@ export default {
       }
     })
 
-    this.makeSentence() // Load page with a random idea
+    this.generateIdea() // Load page with a random idea
   }
 }
 </script>
