@@ -1,42 +1,48 @@
 <template>
-  <div>
-      <h1>Game Idea Generator</h1>
-
-      <h2>Options:</h2>
-      <div class="options-container">
-        <div class="options">
+  <div id="generator" @click.self="generateIdea">
+      <div id="options-container">
+        <div id="options">
           <span class="option-label">
             <label class="block" for="genres">Genres</label>
             <input v-model="genres" type="number" id="genres" min="1" :max="genresLength">
           </span>
 
-          <span class="option-label">
-            <label class="block" for="fancyTopics">Fancy?</label>
-            <input v-model="fancyTopics" type="checkbox" id="fancyTopics">
+          <span class="form-group">
+            <span class="option-label">
+              <label class="block" for="topics">Topics</label>
+              <input v-model="topics" type="number" id="topics" min="1" :max="MAX_TOPICS">
+            </span>
+
+            <span class="option-label">
+              <label class="block" for="fancyTopics">Fancy</label>
+              <input v-model="fancyTopics" type="checkbox" id="fancyTopics">
+            </span>
           </span>
 
-          <span class="option-label">
-            <label class="block" for="topics">Topics</label>
-            <input v-model="topics" type="number" id="topics" min="1" :max="MAX_TOPICS">
-          </span>
+          <span class="form-group">
+            <span class="option-label">
+              <label class="block" for="actions">Actions</label>
+              <input v-model="actions" type="number" id="actions" min="1" :max="MAX_ACTIONS">
+            </span>
 
-          <span class="option-label">
-            <label class="block" for="fancyActions">Fancy?</label>
-            <input v-model="fancyActions" type="checkbox" id="fancyActions">
-          </span>
-
-          <span class="option-label">
-            <label class="block" for="actions">Actions</label>
-            <input v-model="actions" type="number" id="actions" min="1" :max="MAX_ACTIONS">
+            <span class="option-label">
+              <label class="block" for="fancyActions">Fancy</label>
+              <input v-model="fancyActions" type="checkbox" id="fancyActions">
+            </span>
           </span>
         </div>
       </div>
 
-      <h2>Game idea:</h2>
-      <p class="idea">
-        <idea-fragment :fragment="idea.genres" /> game about <idea-fragment :fragment="idea.topics" /> where you must <idea-fragment :fragment="idea.actions" />
-      </p>
-      <button @click="generateIdea">Generate!</button>
+      <div id="idea-container">
+        <h1 id="idea">
+          <idea-fragment :fragment="idea.genres" />
+          game about
+          <idea-fragment :fragment="idea.topics" />
+          where you must
+          <idea-fragment :fragment="idea.actions" />
+        </h1>
+      </div>
+      <p id="alt"><em>Press space or tap anywhere for new ideas</em></p>
   </div>
 </template>
 
@@ -155,19 +161,69 @@ export default {
 </script>
 
 <style scoped>
-.options {
+#generator {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 95vh;
+}
+
+#options-container {
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 768px) {
+  #options-container {
+    align-self: center;
+  }
+}
+
+#options {
   display: flex;
 }
 
-.option-label {
-  margin: 0 8px;
+input[type=number] {
+  border: none;
+  width: 45px;
+  border-bottom: 1px solid #D1C3B4;
+  background: none;
+  outline-color: #ED9B40;
+}
+
+input[type=checkbox] {
+  margin-top: 8px;
+}
+
+.form-group {
+  display: flex;
+  margin-left: 8px;
+  margin-top: -8px;
+  border: 1px solid #ED9B40;
+  border-radius: 2px;
+}
+
+.form-group > .option-label:first-child {
+  margin: 8px;
+}
+
+.form-group > .option-label:last-child {
+  margin-top: 8px;
+  margin-right: 8px;
 }
 
 .block {
   display: block
 }
 
-.idea {
-  user-select: none;
+#idea-container {
+  text-align: center;
+  margin-bottom: 25vh;
+}
+
+#alt {
+  /*margin-top: 4em;*/
+  align-self: center;
+  opacity: 0.8;
 }
 </style>
