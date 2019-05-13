@@ -145,13 +145,6 @@ export default {
         },
         a_genre () {
           return getGenre()
-        },
-        actions (num, fancy) {
-          let result = []
-          for (let i = 0; i < num; i++) {
-            result.push(fancy ? `${this.verb()} ${this.an_adjective()} ${this.noun()}` : `${this.verb()} ${this.a_noun()}`)
-          }
-          return result.length === 1 ? result[0] : result.splice(0, result.length - 1).join(', ') + ' and ' + result[result.length - 1]
         }
       }
     })
