@@ -49,7 +49,6 @@ export default {
   },
   watch: {
     word (newWord) {
-      console.log('hit')
       if (this.locked) {
         this.displayWord = this.cachedWord
       } else {

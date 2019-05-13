@@ -24,11 +24,6 @@ export default {
   },
   components: {
     IdeaWord
-  },
-  data () {
-    return {}
-  },
-  methods: {
   }
 }
 </script>
