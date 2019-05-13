@@ -33,7 +33,7 @@
       </div>
 
       <h2>Game idea:</h2>
-      <p>
+      <p class="idea">
         <idea-fragment :fragment="idea.genres" /> game about <idea-fragment :fragment="idea.topics" /> where you must <idea-fragment :fragment="idea.actions" />
       </p>
       <button @click="generateIdea">Generate!</button>
@@ -172,5 +172,9 @@ export default {
 
 .block {
   display: block
+}
+
+.idea {
+  user-select: none;
 }
 </style>
