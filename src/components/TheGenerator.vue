@@ -1,49 +1,49 @@
 <template>
-  <div id="generator" @click.self="generateIdea">
-      <div id="options-container">
-        <div id="options">
+  <main id="generator" @click.self="generateIdea">
+    <div id="options-container">
+      <div id="options">
+        <span class="option-label">
+          <label class="block" for="genres">Genres</label>
+          <input v-model="genres" type="number" id="genres" min="1" :max="genresLength">
+        </span>
+
+        <span class="form-group">
           <span class="option-label">
-            <label class="block" for="genres">Genres</label>
-            <input v-model="genres" type="number" id="genres" min="1" :max="genresLength">
+            <label class="block" for="topics">Topics</label>
+            <input v-model="topics" type="number" id="topics" min="1" :max="MAX_TOPICS">
           </span>
 
-          <span class="form-group">
-            <span class="option-label">
-              <label class="block" for="topics">Topics</label>
-              <input v-model="topics" type="number" id="topics" min="1" :max="MAX_TOPICS">
-            </span>
+          <span class="option-label">
+            <label class="block" for="fancyTopics">Fancy</label>
+            <input v-model="fancyTopics" type="checkbox" id="fancyTopics">
+          </span>
+        </span>
 
-            <span class="option-label">
-              <label class="block" for="fancyTopics">Fancy</label>
-              <input v-model="fancyTopics" type="checkbox" id="fancyTopics">
-            </span>
+        <span class="form-group">
+          <span class="option-label">
+            <label class="block" for="actions">Actions</label>
+            <input v-model="actions" type="number" id="actions" min="1" :max="MAX_ACTIONS">
           </span>
 
-          <span class="form-group">
-            <span class="option-label">
-              <label class="block" for="actions">Actions</label>
-              <input v-model="actions" type="number" id="actions" min="1" :max="MAX_ACTIONS">
-            </span>
-
-            <span class="option-label">
-              <label class="block" for="fancyActions">Fancy</label>
-              <input v-model="fancyActions" type="checkbox" id="fancyActions">
-            </span>
+          <span class="option-label">
+            <label class="block" for="fancyActions">Fancy</label>
+            <input v-model="fancyActions" type="checkbox" id="fancyActions">
           </span>
-        </div>
+        </span>
       </div>
+    </div>
 
-      <div id="idea-container">
-        <h1 id="idea">
-          <idea-fragment :fragment="idea.genres" />
+    <div id="idea-container">
+      <h1 id="idea">
+        <idea-fragment :fragment="idea.genres" />
           game about
           <idea-fragment :fragment="idea.topics" />
-          where you must
-          <idea-fragment :fragment="idea.actions" />
-        </h1>
-      </div>
-      <p id="alt"><em>Press space or tap anywhere for new ideas</em></p>
-  </div>
+            where you must
+            <idea-fragment :fragment="idea.actions" />
+      </h1>
+    </div>
+    <p id="alt"><em>Press space or tap anywhere for new ideas</em></p>
+  </main>
 </template>
 
 <script>
@@ -133,6 +133,7 @@ export default {
     window.addEventListener('keydown', e => {
       if (e.keyCode === 32) {
         this.generateIdea()
+        e.preventDefault()
       }
     })
 
@@ -164,9 +165,11 @@ export default {
 #generator {
   display: flex;
   position: relative;
+  padding: 16px;
+  padding-top: 32px;
   flex-direction: column;
   justify-content: space-between;
-  height: 95vh;
+  height: 93vh;
 }
 
 #options-container {
