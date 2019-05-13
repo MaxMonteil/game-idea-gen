@@ -34,7 +34,7 @@
 
       <h2>Game idea:</h2>
       <p>
-        <idea-fragment :fragment="idea.genres" /> game about <idea-fragment :fragment="idea.topics" /> where you must <idea-fragment :fragment="idea.actions" />.
+        <idea-fragment :fragment="idea.genres" /> game about <idea-fragment :fragment="idea.topics" /> where you must <idea-fragment :fragment="idea.actions" />
       </p>
       <button @click="generateIdea">Generate!</button>
   </div>
@@ -64,15 +64,15 @@ export default {
       MAX_ACTIONS: 10,
       idea: {
         genres: {
-          joiner: (words) => words.join(' / '),
+          joiner: '/',
           words: []
         },
         topics: {
-          joiner: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
+          joiner: ',',
           words: []
         },
         actions: {
-          joiner: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
+          joiner: ',',
           words: []
         }
       }
