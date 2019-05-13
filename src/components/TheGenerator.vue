@@ -7,7 +7,7 @@
         <div class="options">
           <span class="option-label">
             <label class="block" for="genres">Genres</label>
-            <input v-model="genres" type="number" id="genres" min="1" :max="gameGenres.length">
+            <input v-model="genres" type="number" id="genres" min="1" :max="genresLength">
           </span>
 
           <span class="option-label">
@@ -42,6 +42,7 @@
 
 <script>
 import Verbs from '@/assets/verbs.js'
+import { Genres } from '@/assets/genres.js'
 import Sentencer from 'sentencer'
 
 import IdeaFragment from '@/components/IdeaFragment'
@@ -53,6 +54,7 @@ export default {
   },
   data () {
     return {
+      genresLength: Genres.length,
       genres: 1,
       fancyTopics: true,
       topics: 1,
@@ -73,55 +75,7 @@ export default {
           joiner: (words) => words.length === 1 ? words[0] : words.splice(0, words.length - 1).join(', ') + ' and ' + words[words.length - 1],
           words: []
         }
-      },
-      gameGenres: [
-        'A Platformer',
-        'A Shooter',
-        'A Fighting',
-        "A Beat 'em up",
-        'A Stealth',
-        'A Survival',
-        'A Rhythm',
-        'A Survival horror',
-        'A Metroidvania',
-        'A Text adventure',
-        'A Graphic adventure',
-        'A Visual novel',
-        'An Interactive movie',
-        'A Real-time 3D adventure',
-        'An Action RPG',
-        'An MMORPG',
-        'A Roguelike',
-        'A Tactical RPG',
-        'A Sandbox RPG',
-        'A First-person party-based RPG',
-        'A Choices',
-        'A Fantasy',
-        'A Construction and management simulation',
-        'A Life simulation',
-        'A Vehicle simulation',
-        'A 4X',
-        'An Artillery',
-        'A Real-time strategy (RTS)',
-        'A Real-time tactics (RTT)',
-        'A Multiplayer online battle arena (MOBA)',
-        'A Tower defense',
-        'A Turn-based strategy (TBS)',
-        'A Turn-based tactics (TBT)',
-        'A Wargame',
-        'A Racing',
-        'A Sports',
-        'A Sports-based fighting',
-        'An MMO',
-        'A Casual',
-        'A Party',
-        'A Programming',
-        'A Logic',
-        'A Trivia',
-        'A Board',
-        'A Card',
-        'An Idle'
-      ]
+      }
     }
   },
   methods: {
@@ -134,14 +88,17 @@ export default {
       this.resetData()
 
       // Validation
-      this.genres = (this.genres < 1) ? 1 : (this.genres > this.gameGenres.length) ? this.gameGenres.length : this.genres
+      this.genres = (this.genres < 1) ? 1 : (this.genres > Genres.length) ? Genres.length : this.genres
       this.topics = (this.topics < 1) ? 1 : (this.topics > this.MAX_TOPICS) ? this.MAX_TOPICS : this.topics
       this.actions = (this.actions < 1) ? 1 : (this.actions > this.MAX_ACTIONS) ? this.MAX_ACTIONS : this.actions
 
       // Generation
       this.idea.genres.words.push({ noun: Sentencer.make('{{ a_genre }}'), adj: '', verb: '' })
       for (let i = 0; i < this.genres - 1; i++) {
-        this.idea.genres.words.push({ noun: Sentencer.make('{{ genre }}'), adj: '', verb: '' })
+        let genre = Sentencer.make('{{ genre }}')
+        if (!this.idea.genres.words.map(obj => obj.noun).includes(genre)) {
+          this.idea.genres.words.push({ noun: genre, adj: '', verb: '' })
+        }
       }
 
       if (this.fancyTopics) {
@@ -175,7 +132,7 @@ export default {
 
     // Binding this to the vue instance before passing to sentence configuration
     let getGenre = () => {
-      return this.gameGenres[Math.floor(Math.random() * this.gameGenres.length)]
+      return Genres[Math.floor(Math.random() * Genres.length)]
     }
 
     Sentencer.configure({
