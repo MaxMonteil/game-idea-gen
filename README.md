@@ -2,10 +2,11 @@
 
 ## Table of Contents
 
-* [What is this?](#what-is-this?)
+* [What is this?](#what-is-this)
 * [Getting Started](#getting-started)
 * [Deployment](#deployment)
 * [Built With](#built-with)
+* [Todo](#todo)
 * [License](#license)
 
 ## What is this?
@@ -36,6 +37,12 @@ npm run serve
 
 * [Vue.js](https://vuejs.org)
 * [Sentencer](http://kylestetz.github.io/Sentencer/)
+
+## Todo
+
+* [ ] Deploy as PWA
+* [ ] Add a history to go back
+* [ ] Make nicer checkboxes
 
 ## License
 
