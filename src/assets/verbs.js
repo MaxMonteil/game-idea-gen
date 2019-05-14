@@ -1,5 +1,4 @@
-// yes, we're going to be crude and load all the words into memory... it's really not so bad.
-// the list comes from this gem:
+// The list comes from this site:
 // http://www.ashley-bovan.co.uk/words/partsofspeech.html
 
 module.exports = [
