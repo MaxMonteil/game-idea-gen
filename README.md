@@ -7,6 +7,7 @@
 * [Deployment](#deployment)
 * [Built With](#built-with)
 * [Todo](#todo)
+* [Contributing](#contributing)
 * [License](#license)
 
 ## What is this?
@@ -45,6 +46,10 @@ npm run serve
 * [ ] Make nicer checkboxes
 * [ ] Add option to generate a setting (steampunk, space, middle ages, etc.)
 * [ ] Make a logo (and favicon)
+
+## Contributing
+
+As you've noticed most of the ideas might not really make sense, feel free to make suggestions about words that should be removed or added to either list. Same for ideas about some extra features, let me know.
 
 ## License
 
