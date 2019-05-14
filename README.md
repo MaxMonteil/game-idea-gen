@@ -1,29 +1,42 @@
-# game-ideas
+# Random Game Idea Generator
 
-## Project setup
+## Table of Contents
+
+* [What is this?](#what-is-this?)
+* [Getting Started](#getting-started)
+* [Deployment](#deployment)
+* [Built With](#built-with)
+* [License](#license)
+
+## What is this?
+
+Welcome to a totally random game idea generator!
+The premise is simple, keep generating new ideas untils you find an idea you love. Most of them won't make sense, what you can do is lock the words you like and let the rest of the sentence continue changing.
+
+There are also some other settings you can play around with like the number of game genres, topics, or actions. Making things fancy will also generate adjectives.
+
+### How does it work?
+
+I'm using Sentencer to generate random nouns and adjectives plus my own list of verbs and game genres.
+
+You can check the full lists and the site code over on Github.
+
+## Getting Started
+
 ```
+git clone
+cd game-idea-gen
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Deployment
 
-### Run your tests
-```
-npm run test
-```
+## Built With
 
-### Lints and fixes files
-```
-npm run lint
-```
+* [Vue.js](https://vuejs.org)
+* [Sentencer](http://kylestetz.github.io/Sentencer/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## License
+
+This project is licensed under the MIT License.
