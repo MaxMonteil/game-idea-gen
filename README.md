@@ -38,10 +38,12 @@ npm run serve
 
 * [Vue.js](https://vuejs.org)
 * [Sentencer](http://kylestetz.github.io/Sentencer/)
+* [Netlify](https://www.netlify.com/)
 
 ## Todo
 
-* [ ] Deploy as PWA
+* [x] Deploy as PWA
+* [ ] Do all PWA settings
 * [ ] Add a history to go back
 * [ ] Make nicer checkboxes
 * [ ] Add option to generate a setting (steampunk, space, middle ages, etc.)
