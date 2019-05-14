@@ -43,6 +43,8 @@ npm run serve
 * [ ] Deploy as PWA
 * [ ] Add a history to go back
 * [ ] Make nicer checkboxes
+* [ ] Add option to generate a setting (steampunk, space, middle ages, etc.)
+* [ ] Make a logo (and favicon)
 
 ## License
 
