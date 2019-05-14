@@ -225,8 +225,8 @@ input[type=checkbox] {
 }
 
 #alt {
-  /*margin-top: 4em;*/
   align-self: center;
   opacity: 0.8;
+  margin-bottom: 48px;
 }
 </style>
