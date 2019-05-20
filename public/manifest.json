@@ -1,6 +1,6 @@
 {
-  "name": "game-ideas",
-  "short_name": "game-ideas",
+  "name": "Game Idea Generator",
+  "short_name": "Game Ideas",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
