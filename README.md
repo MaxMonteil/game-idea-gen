@@ -42,12 +42,12 @@ npm run serve
 
 ## Todo
 
-* [x] Deploy as PWA
-* [ ] Do all PWA settings
 * [ ] Add a history to go back
 * [ ] Make nicer checkboxes
 * [ ] Add option to generate a setting (steampunk, space, middle ages, etc.)
-* [ ] Make a logo (and favicon)
+* [x] Deploy as PWA
+* [X] Do all PWA settings
+* [X] Make a logo (and favicon)
 
 ## Contributing
 
