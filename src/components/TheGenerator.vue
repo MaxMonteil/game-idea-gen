@@ -195,6 +195,7 @@ input[type=number] {
 }
 
 input[type=checkbox] {
+  transform: scale(1.5);
   margin-top: 8px;
 }
 
